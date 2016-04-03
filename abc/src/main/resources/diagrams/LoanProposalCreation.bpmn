@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="process_pool2" name="process_pool2" isExecutable="true">
+    <laneSet id="laneSet_process_pool2">
+      <lane id="lane6">
+        <flowNodeRef>startevent3</flowNodeRef>
+        <flowNodeRef>usertask1</flowNodeRef>
+        <flowNodeRef>exclusivegateway3</flowNodeRef>
+        <flowNodeRef>subprocess1</flowNodeRef>
+        <flowNodeRef>boundarytimer1</flowNodeRef>
+        <flowNodeRef>scripttask1</flowNodeRef>
+        <flowNodeRef>boundarymessage1</flowNodeRef>
+        <flowNodeRef>exclusivegateway6</flowNodeRef>
+        <flowNodeRef>scripttask2</flowNodeRef>
+        <flowNodeRef>timerintermediatecatchevent1</flowNodeRef>
+        <flowNodeRef>messageintermediatecatchevent3</flowNodeRef>
+        <flowNodeRef>scripttask5</flowNodeRef>
+        <flowNodeRef>usertask6</flowNodeRef>
+        <flowNodeRef>exclusivegateway8</flowNodeRef>
+      </lane>
+    </laneSet>
+    <startEvent id="startevent5" name="Start"></startEvent>
+    <scriptTask id="scripttask6" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>system.out.println("sending email")</script>
+    </scriptTask>
+    <sequenceFlow id="flow37" sourceRef="startevent5" targetRef="scripttask6"></sequenceFlow>
+    <serviceTask id="mailtask1" name="Mail Task" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:string><![CDATA[sourav.kumar@gmail.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[raj.iitg@gmail.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[Test Activiti]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="html">
+          <activiti:string><![CDATA[<html>ye le</html>]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow38" sourceRef="scripttask6" targetRef="mailtask1"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow39" sourceRef="mailtask1" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <process id="process_pool1" name="process_pool1" isExecutable="true">
+    <laneSet id="laneSet_process_pool1">
+      <lane id="lane7">
+        <flowNodeRef>messagestartevent1</flowNodeRef>
+        <flowNodeRef>eventgateway2</flowNodeRef>
+        <flowNodeRef>AssignRep</flowNodeRef>
+        <flowNodeRef>exclusivegateway7</flowNodeRef>
+        <flowNodeRef>messageintermediatecatchevent2</flowNodeRef>
+        <flowNodeRef>timerintermediatecatchevent2</flowNodeRef>
+        <flowNodeRef>usertask3</flowNodeRef>
+        <flowNodeRef>usertask4</flowNodeRef>
+        <flowNodeRef>usertask5</flowNodeRef>
+        <flowNodeRef>scripttask3</flowNodeRef>
+        <flowNodeRef>scripttask4</flowNodeRef>
+      </lane>
+    </laneSet>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_process_pool2">
+    <bpmndi:BPMNPlane bpmnElement="process_pool2" id="BPMNPlane_process_pool2">
+      <bpmndi:BPMNShape bpmnElement="startevent5" id="BPMNShape_startevent5">
+        <omgdc:Bounds height="35.0" width="35.0" x="110.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask6" id="BPMNShape_scripttask6">
+        <omgdc:Bounds height="55.0" width="105.0" x="330.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="mailtask1" id="BPMNShape_mailtask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="470.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="740.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow37" id="BPMNEdge_flow37">
+        <omgdi:waypoint x="145.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="330.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow38" id="BPMNEdge_flow38">
+        <omgdi:waypoint x="435.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="470.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow39" id="BPMNEdge_flow39">
+        <omgdi:waypoint x="575.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="740.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
